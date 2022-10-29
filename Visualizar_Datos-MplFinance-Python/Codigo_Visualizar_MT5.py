@@ -8,6 +8,7 @@ from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 import MetaTrader5 as mt5
 import pytz
+import mplfinance as mpf
 
 #--------------------------------------------------------------------
 
@@ -112,6 +113,12 @@ rate_data_frame = pd.DataFrame(rate)
 
 #--------------------------------------------------------------------
 
+#-Creamos un Segundo Data frame que sera usado en la visualizacion---
+
+rate_data_frame2 =pd.DataFrame(rate)
+
+#--------------------------------------------------------------------
+
 #-Cambiar el nombre de tick_volume por volume------------------------  
 
 rate_data_frame.rename({'tick_volume': 'volume'}, axis=1, inplace=True)
@@ -130,10 +137,44 @@ rate_data_frame=rate_data_frame.set_index('time')
 
 #--------------------------------------------------------------------
 
+#-Denotamos los datos de tiempo para la visualizacion para el nuevo data frame-
+
+rate_data_frame2['time']=pd.to_datetime(rate_data_frame2['time'], unit='s')
+
+#--------------------------------------------------------------------
+
+#-Calculamos la longitud del data frame 2----------------------------
+
+n = len(rate_data_frame2)
+
+#--------------------------------------------------------------------
+
 #-Visualizamos los datos---------------------------------------------
 
 print("\nDatos")
 print(rate_data_frame ) 
+
+#--------------------------------------------------------------------
+
+#-Definimos los valores que deseamos visualizar, esto dado un modelo matematico-
+
+#-Estos valores son zonas de interes en el mercado------------------- 
+
+Z_1 = 1.00267
+Z_2 = 0.99914
+Z_3 = 0.99715
+Z_4 = 1.00466
+
+#-Estos son las fechas de inicio y final para visualizar el rengo de datos usados-
+
+Date_Fecha_Inicial = (rate_data_frame2.iloc[0, 0])
+Date_Fecha_Final = (rate_data_frame2.iloc[n-1, 0])
+
+#--------------------------------------------------------------------
+
+#-Visualizamos la Data-----------------------------------------------
+
+mpf.plot(rate_data_frame,volume = True, type='candle', style = 'classic', vlines = dict(vlines = [Date_Fecha_Inicial, Date_Fecha_Final], colors='0' ,alpha = 0.4), hlines = dict(hlines = [Z_1, Z_2, Z_3, Z_4], colors='0.5', linestyle='-.'))
 
 #--------------------------------------------------------------------
 
