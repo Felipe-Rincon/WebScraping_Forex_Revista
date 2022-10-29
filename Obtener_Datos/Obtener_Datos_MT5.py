@@ -63,23 +63,21 @@ par_divisas = "EURUSD"
 
 #--------------------------------------------------------------------
 
-#-Data Frame de la primera vela desde donde tomaremos los datos------
+#Data Time de la primera vela desde donde tomaremos los datos
 
 año_vi = 2022
-mes_vi = 10
-dia_vi = 24
-hora_vi = 19
-minuto_vi = 30
+mes_vi = 9
+dia_vi = 19
+hora_vi = 10
+minuto_vi = 00
 
-#--------------------------------------------------------------------
-
-#-Data Time de la ultima vela hasta donde tomaremos los datos--------
+#Data Time de la ultima vela hasta donde tomaremos los datos
 
 año_vf = 2022
-mes_vf = 10
-dia_vf = 25
-hora_vf = 17
-minuto_vf = 00
+mes_vf = 9
+dia_vf = 20
+hora_vf = 3
+minuto_vf = 15
 
 #--------------------------------------------------------------------
    
